@@ -1,12 +1,7 @@
+import { restaurantSchema } from "@/schema/schemas";
 import prisma from "../prisma/client-prisma";
 import { listOfRestaurants } from "@/app/data/restaurants";
-import { z } from "zod";
 
-const restaurantSchema = z.object({
-  name: z.string(),
-  address: z.string(),
-  description: z.string(),
-});
 
 async function main() {
   console.log("Seeding database...");
