@@ -1,8 +1,39 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/client-prisma";
-import { inventoryItemSchema } from "@/schema/validation";
+import { orderSchema } from "@/schema/validation";
 import { z } from "zod";
+
+
+export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+  try {
+    if (!params?.id) {
+      return NextResponse.json({ error: "Missing or invalid ID" }, { status: 400 });
+    }
+
+    const requestBody = await request.json();
+    const validatedData = orderSchema.safeParse(requestBody);
+
+    if (!validatedData.success) {
+      return NextResponse.json({ error: validatedData.error.format() }, { status: 400 });
+    }
+
+    const updatedOrder = await prisma.order.update({
+      where: {
+        id: params.id,
+      },
+      data: validatedData.data,
+    });
+
+    return NextResponse.json(updatedOrder, {
+      status: 200,
+    });
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({ error: "Invalid query parameters", details: error.errors }, { status: 400 });
+    }
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
+}
 
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
@@ -10,12 +41,15 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     if (!params?.id) {
       return NextResponse.json({ error: "Missing or invalid ID" }, { status: 400 });
     }
-    const item = await prisma.inventoryItem.findUnique({
+    const order = await prisma.order.findUnique({
       where: {
         id: params.id,
       },
+      include: {
+        inventoryItem: true,
+      },
     });
-    return NextResponse.json(item, { status: 200 });
+    return NextResponse.json(order, { status: 200 });
   }
   catch (error) {
     if (error instanceof z.ZodError) {
@@ -26,29 +60,17 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 }
 
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     if (!params?.id) {
       return NextResponse.json({ error: "Missing or invalid ID" }, { status: 400 });
     }
-
-    const requestBody = await request.json();
-    const validatedData = inventoryItemSchema.safeParse(requestBody);
-
-    if (!validatedData.success) {
-      return NextResponse.json({ error: validatedData.error.format() }, { status: 400 });
-    }
-
-    const updatedItem = await prisma.inventoryItem.update({
+    const order = await prisma.order.delete({
       where: {
         id: params.id,
       },
-      data: validatedData.data,
     });
-
-    return NextResponse.json(updatedItem, {
-      status: 200,
-    });
+    return NextResponse.json(order, { status: 200 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: "Invalid query parameters", details: error.errors }, { status: 400 });
@@ -56,23 +78,3 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 };
-
-
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
-  try {
-    if (!params?.id) {
-      return NextResponse.json({ error: "Missing or invalid ID" }, { status: 400 });
-    }
-    const item = await prisma.inventoryItem.delete({
-      where: {
-        id: params.id,
-      },
-    });
-    return NextResponse.json(item, { status: 200 });
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: "Invalid query parameters", details: error.errors }, { status: 400 });
-    }
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
-  }
-}
