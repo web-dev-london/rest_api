@@ -34,16 +34,27 @@ const listOfInventoryItems = [
 
 const listOfInventoryOrders = [
   { "quantity": 150, "inventoryItemId": "cll0b11r10001" },
-  { "quantity": 200, "inventoryItemId": "cll0b11r10003" },
-  { "quantity": 175, "inventoryItemId": "cll0b11r10005" },
-  { "quantity": 180, "inventoryItemId": "cll0b11r10008" },
-  { "quantity": 190, "inventoryItemId": "cll0b11r10012" },
-  { "quantity": 165, "inventoryItemId": "cll0b11r10015" },
-  { "quantity": 220, "inventoryItemId": "cll0b11r10018" },
-  { "quantity": 140, "inventoryItemId": "cll0b11r10021" },
-  { "quantity": 160, "inventoryItemId": "cll0b11r10025" },
-  { "quantity": 155, "inventoryItemId": "cll0b11r10029" }
+  { "quantity": 200, "inventoryItemId": "cll0b11r10002" },
+  { "quantity": 175, "inventoryItemId": "cll0b11r10003" },
+  { "quantity": 180, "inventoryItemId": "cll0b11r10004" },
+  { "quantity": 190, "inventoryItemId": "cll0b11r10005" },
+  { "quantity": 165, "inventoryItemId": "cll0b11r10006" },
+  { "quantity": 220, "inventoryItemId": "cll0b11r10007" },
+  { "quantity": 140, "inventoryItemId": "cll0b11r10008" },
+  { "quantity": 160, "inventoryItemId": "cll0b11r10009" },
+  { "quantity": 155, "inventoryItemId": "cll0b11r10010" },
+  { "quantity": 170, "inventoryItemId": "cll0b11r10011" },
+  { "quantity": 145, "inventoryItemId": "cll0b11r10012" },
+  { "quantity": 185, "inventoryItemId": "cll0b11r10013" },
+  { "quantity": 135, "inventoryItemId": "cll0b11r10014" },
+  { "quantity": 195, "inventoryItemId": "cll0b11r10015" },
+  { "quantity": 210, "inventoryItemId": "cll0b11r10016" },
+  { "quantity": 130, "inventoryItemId": "cll0b11r10017" },
+  { "quantity": 145, "inventoryItemId": "cll0b11r10018" },
+  { "quantity": 165, "inventoryItemId": "cll0b11r10019" },
+  { "quantity": 175, "inventoryItemId": "cll0b11r10020" }
 ]
+
 
 
 export { listOfInventoryItems, listOfInventoryOrders }

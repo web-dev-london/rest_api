@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/client-prisma";
-import { inventoryItemSchema } from "@/schema/validation";
+import { itemSchema } from "@/schema/validation";
 import { z } from "zod";
 
 
@@ -33,7 +33,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     }
 
     const requestBody = await request.json();
-    const validatedData = inventoryItemSchema.safeParse(requestBody);
+    const validatedData = itemSchema.safeParse(requestBody);
 
     if (!validatedData.success) {
       return NextResponse.json({ error: validatedData.error.format() }, { status: 400 });
