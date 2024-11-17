@@ -2,9 +2,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/client-prisma";
 import { orderSchema } from "@/schema/validation";
-import { z } from "zod";
 import { buildOrderFilters } from "@/utils/filters";
 import { handleErrors } from "@/utils/errorHandler";
+import { handleRequest } from "@/utils/handleRequest";
 
 
 
@@ -53,18 +53,31 @@ export async function GET(request: NextRequest) {
 
 
 
-
-
 export async function POST(request: NextRequest) {
-  try {
-    const requestBody = await request.json();
-    const validatedData = orderSchema.safeParse(requestBody);
+  const response = await handleRequest(request, orderSchema, async (parsed) => {
+    const { quantity, inventoryItemId } = parsed;
+    const order = await prisma.order.create({
+      data: {
+        quantity,
+        inventoryItemId,
+      },
+    });
+    return { message: "Order created successfully", order };
+  });
 
-    if (!validatedData.success) {
-      return NextResponse.json({ error: validatedData.error.format() }, { status: 400 });
-    }
+  return response;
+};
 
-    const { quantity, inventoryItemId } = validatedData.data;
+
+
+
+
+
+
+
+/* 
+
+const { quantity, inventoryItemId } = validatedData.data;
 
     const order = await prisma.order.create({
       data: {
@@ -74,10 +87,5 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json(order, { status: 201 });
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: "Invalid query parameters", details: error.errors }, { status: 400 });
-    }
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
-  }
-};
+
+ */

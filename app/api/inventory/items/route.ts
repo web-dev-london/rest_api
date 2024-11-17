@@ -53,14 +53,16 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   const response = await handleRequest(request, itemSchema, async (parsed) => {
-    await prisma.inventoryItem.create({
+    const item = await prisma.inventoryItem.create({
       data: parsed
     })
-    return { message: "Item created successfully" }
+    return { message: "Item created successfully", item };
   })
 
   return response;
 };
+
+
 
 
 
