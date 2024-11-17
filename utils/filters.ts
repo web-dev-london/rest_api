@@ -1,19 +1,30 @@
-
-
-export interface Filter {
-  createdAt?: { gte: Date; lte: Date; };
-  itemId?: number;
-  name?: { contains: string; mode: string };
-  quantity?: { gte?: number; lte?: number };
-}
-
-
-
 export interface ItemFilters {
   OR?: Array<Record<string, { contains: string; mode: string }>>;
   quantity?: {
     gte?: number;
     lte?: number;
+  };
+}
+
+export interface OrderFilters {
+  itemId?: string;
+  createdAt?: { gte: Date; lte: Date; };
+}
+
+export interface Order {
+  id: string;
+  quantity: number;
+  inventoryItemId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  inventoryItem: {
+    id: string;
+    name: string;
+    quantity: number;
+    createdAt: Date;
+    updatedAt: Date;
+    price: number;
+    supplier: string | null;
   };
 }
 
@@ -42,20 +53,25 @@ export function buildItemFilters(params: URLSearchParams): ItemFilters {
 }
 
 
-
-
-
-export function buildOrderFilters(itemId?: string, startDate?: string, endDate?: string) {
-  const filters: Filter = {};
+export function buildOrderFilters(itemId?: string, startDate?: string, endDate?: string): OrderFilters {
+  const filters: OrderFilters = {};
 
   if (itemId) {
-    filters.itemId = Number(itemId);
+    filters.itemId = itemId
   }
+
+
   if (startDate && endDate) {
     filters.createdAt = {
       gte: new Date(startDate),
       lte: new Date(endDate),
-    };
+    }
+    if (startDate) {
+      filters.createdAt.gte = new Date(startDate)
+    }
+    if (endDate) {
+      filters.createdAt.lte = new Date(endDate)
+    }
   }
 
   return filters;

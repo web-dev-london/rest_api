@@ -3,54 +3,7 @@ import prisma from "@/prisma/client-prisma";
 import { orderSchema } from "@/schema/validation";
 import { handleRequest } from "@/utils/handleRequest";
 import { handleGetAllRequest } from "@/utils/handleGetAllRequest";
-
-
-interface OrderFilters {
-  itemId?: string;
-  createdAt?: { gte: Date; lte: Date; };
-}
-
-interface Order {
-  id: string;
-  quantity: number;
-  inventoryItemId: string;
-  createdAt: Date;
-  updatedAt: Date;
-  inventoryItem: {
-    id: string;
-    name: string;
-    quantity: number;
-    createdAt: Date;
-    updatedAt: Date;
-    price: number;
-    supplier: string | null;
-  };
-}
-
-
-function buildOrderFilters(itemId?: string, startDate?: string, endDate?: string): OrderFilters {
-  const filters: OrderFilters = {};
-
-  if (itemId) {
-    filters.itemId = itemId
-  }
-
-
-  if (startDate && endDate) {
-    filters.createdAt = {
-      gte: new Date(startDate),
-      lte: new Date(endDate),
-    }
-    if (startDate) {
-      filters.createdAt.gte = new Date(startDate)
-    }
-    if (endDate) {
-      filters.createdAt.lte = new Date(endDate)
-    }
-  }
-
-  return filters;
-}
+import { buildOrderFilters, Order, OrderFilters } from "@/utils/filters";
 
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
@@ -81,8 +34,6 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
   return response;
 }
-
-
 
 
 
