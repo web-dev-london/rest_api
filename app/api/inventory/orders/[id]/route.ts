@@ -1,34 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/client-prisma";
 import { orderSchema } from "@/schema/validation";
+import { handleSingleRequest } from "@/utils/handleSingleRequest";
 import { z } from "zod";
 
 
 
-
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
-  try {
-    if (!params?.id) {
-      return NextResponse.json({ error: "Missing or invalid ID" }, { status: 400 });
+export async function GET(request: NextRequest, context: { params: { id: string } }): Promise<NextResponse> {
+  const response = await handleSingleRequest(
+    request,
+    context,
+    async (id) => {
+      const order = await prisma.order.findUnique({
+        where: {
+          id,
+        },
+        include: {
+          inventoryItem: true,
+        },
+      });
+      return { message: "Order fetched successfully", order };
     }
-    const order = await prisma.order.findUnique({
-      where: {
-        id: params.id,
-      },
-      include: {
-        inventoryItem: true,
-      },
-    });
-    return NextResponse.json(order, { status: 200 });
-  }
-  catch (error) {
-    if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: "Invalid query parameters", details: error.errors }, { status: 400 });
-    }
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
-  }
+  );
+  return response;
 }
-
 
 
 
@@ -111,3 +106,40 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 };
+
+
+
+
+
+
+
+
+
+
+/* 
+
+  export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+  try {
+    if (!params?.id) {
+      return NextResponse.json({ error: "Missing or invalid ID" }, { status: 400 });
+    }
+    const order = await prisma.order.findUnique({
+      where: {
+        id: params.id,
+      },
+      include: {
+        inventoryItem: true,
+      },
+    });
+    return NextResponse.json(order, { status: 200 });
+  }
+  catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({ error: "Invalid query parameters", details: error.errors }, { status: 400 });
+    }
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
+}
+
+
+*/
