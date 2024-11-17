@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
   const limitNumber = parseInt(limit, 10);
   const offset = (pageNumber - 1) * limitNumber;
 
-  // Generate filters using utility function
+  // Generate filters 
   const filters = buildOrderFilters(itemId, startDate, endDate);
 
   // Sorting logic
@@ -81,20 +81,3 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 };
-
-
-// export async function GET(request: NextRequest) {
-//   try {
-//     const orders = await prisma.order.findMany({
-//       include: {
-//         inventoryItem: true,
-//       },
-//     });
-//     return NextResponse.json(orders);
-//   } catch (error) {
-//     if (error instanceof z.ZodError) {
-//       return NextResponse.json({ error: "Invalid query parameters", details: error.errors }, { status: 400 });
-//     }
-//     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
-//   }
-// }

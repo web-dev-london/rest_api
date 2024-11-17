@@ -5,6 +5,7 @@ import { itemSchema } from "@/schema/validation";
 import { z } from "zod";
 import { buildItemFilters } from "@/utils/filters";
 import { handleErrors } from "@/utils/errorHandler";
+import { handleRequest } from "@/utils/handleRequest";
 
 
 
@@ -50,9 +51,27 @@ export async function GET(request: NextRequest) {
 
 
 
-
 export async function POST(request: NextRequest) {
-  try {
+  const response = await handleRequest(request, itemSchema, async (parsed) => {
+    await prisma.inventoryItem.create({
+      data: parsed
+    })
+    return { message: "Item created successfully" }
+  })
+
+  return response;
+};
+
+
+
+
+
+
+
+
+/* 
+
+try {
     const requestBody = await request.json();
     const validatedData = itemSchema.safeParse(requestBody);
 
@@ -71,7 +90,5 @@ export async function POST(request: NextRequest) {
     }
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
-}
 
-
-
+ */
