@@ -105,11 +105,17 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     if (!params?.id) {
       return NextResponse.json({ error: "Missing or invalid ID" }, { status: 400 });
     }
+
     const item = await prisma.inventoryItem.findUnique({
       where: {
         id: params.id,
       },
     });
+
+    if (!item) {
+      return NextResponse.json({ error: "Item not found" }, { status: 404 });
+    }
+
     return NextResponse.json(item, { status: 200 });
   }
   catch (error) {
