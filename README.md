@@ -24,8 +24,8 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+-   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
@@ -34,3 +34,26 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Inventory Management API
+
+An Inventory Management API can be useful in business applications where you need to keep track of product stock, orders, and supplier information.
+• Endpoints:
+
+    •	Inventory Item Endpoints:
+    •	POST /api/inventory/items: Add a new inventory item.
+    •	GET /api/inventory/items: List all inventory items.
+    •	GET /api/inventory/items/[id]: Retrieve a specific inventory item by ID.
+    •	PUT /api/inventory/items: Update an inventory item by ID.
+    •	DELETE /api/inventory/items: Delete an inventory item by ID.
+    •	Order Endpoints:
+    •	POST /api/inventory/orders: Create a new order.
+    •	GET /api/inventory/orders: List all orders.
+    •	GET /api/inventory/orders/[id]: Retrieve a specific order by ID.
+
+• PUT /api/inventory/orders: Update an order by ID.
+• DELETE /api/inventory/orders: Delete an order by ID.
+
+    •	Useful For:
+
+Warehouse management, small businesses, or point-of-sale systems.

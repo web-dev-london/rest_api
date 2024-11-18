@@ -110,3 +110,18 @@
    • GET /api/inventory/orders?minQuantity=10&maxQuantity=50&search=Widget
 6. Get orders sorted by creation date
    • GET /api/inventory/orders?sort=createdAt&order=desc&page=1&limit=10
+
+## Query Parameters
+
+| Parameter   |                Description                |              Example |
+| ----------- | :---------------------------------------: | -------------------: |
+| page        |         Specifies the page number         |               page=2 |
+| limit       |         Number of items per page          |             limit=10 |
+| sort        |  Field to sort by(e.g.,price,createdAt)   |           sort=price |
+| order       |          Sort order,asc or desc           |            order=asc |
+| minQuantity |     Minimum quantity filter for items     |       minQuantity=10 |
+| maxQuantity |     Maximum quantity filter for items     |       maxQuantity=50 |
+| search      |            Search by itme name            |        search=Widget |
+| itemId      |     Filter orders by specific item ID     |             itemId=1 |
+| startDate   | Start date filter for orders (YYYY-MM-DD) | startDate=2022-01-01 |
+| endDate     |  End date filter for orders (YYYY-MM-DD)  |   endDate=2022-01-31 |
