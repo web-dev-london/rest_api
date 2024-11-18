@@ -4,13 +4,15 @@ import { itemSchema } from "@/schema/validation";
 import { handleSingleRequest } from "@/utils/handleSingleRequest";
 import { handleSingleUpdateRequest } from "@/utils/handleSingleUpdateRequest";
 
+
+
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ): Promise<NextResponse> {
   const response = await handleSingleRequest(
     request,
-    { params },
+    context,
     async (id) => {
       const item = await prisma.inventoryItem.findUnique({
         where: {
@@ -25,11 +27,11 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ): Promise<NextResponse> {
   const response = await handleSingleUpdateRequest(
     request,
-    { params },
+    context,
     itemSchema,
     async (id, data) => {
       const updatedItem = await prisma.inventoryItem.update({
@@ -48,11 +50,11 @@ export async function PUT(
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ): Promise<NextResponse> {
   const response = await handleSingleUpdateRequest(
     request,
-    { params },
+    context,
     itemSchema.partial(),
     async (id, data) => {
       const updatedItem = await prisma.inventoryItem.update({
@@ -70,11 +72,11 @@ export async function PATCH(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ): Promise<NextResponse> {
   const response = await handleSingleRequest(
     request,
-    { params },
+    context,
     async (id) => {
       const item = await prisma.inventoryItem.delete({
         where: {
