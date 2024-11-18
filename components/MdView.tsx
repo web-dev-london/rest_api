@@ -18,7 +18,7 @@ const MdView = async () => {
     options: {
       parseFrontmatter: true,
       mdxOptions: {
-        remarkPlugins: [remarkGfm],         // Enable GitHub-flavored Markdown (for tables, checkboxes, etc.)
+        remarkPlugins: [remarkGfm],         // Enable GitHub-flavored Markdown extensions
         rehypePlugins: [rehypeHighlight],   // Syntax highlighting for code blocks
       },
     },
