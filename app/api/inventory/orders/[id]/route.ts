@@ -6,7 +6,6 @@ import { handleSingleRequest } from "@/utils/handleSingleRequest";
 
 
 
-
 export async function GET(request: NextRequest, context: { params: { id: string } }): Promise<NextResponse> {
   const response = await handleSingleRequest(
     request,
