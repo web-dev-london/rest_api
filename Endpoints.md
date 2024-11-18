@@ -104,12 +104,12 @@
     3.	Get orders sorted by creation date
     •	GET /api/inventory/orders?sort=createdAt&order=desc&page=1&limit=10
 
-4. Get paginated and sorted list of orders
-   • GET /api/inventory/orders?page=2&limit=5&sort=createdAt&order=asc
-5. Get filtered orders within quantity range and specific search
-   • GET /api/inventory/orders?minQuantity=10&maxQuantity=50&search=Widget
-6. Get orders sorted by creation date
-   • GET /api/inventory/orders?sort=createdAt&order=desc&page=1&limit=10
+    4. Get paginated and sorted list of orders
+     • GET /api/inventory/orders?page=2&limit=5&sort=createdAt&order=asc
+    5. Get filtered orders within quantity range and specific search
+    • GET /api/inventory/orders?minQuantity=10&maxQuantity=50&search=Widget
+    6. Get orders sorted by creation date
+    • GET /api/inventory/orders?sort=createdAt&order=desc&page=1&limit=10
 
 ## Query Parameters
 
