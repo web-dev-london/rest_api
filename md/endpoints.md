@@ -11,8 +11,6 @@
     - price (number, required): Price of the item.
     - supplier (string, optional): Supplier&apos;s name.
 
-<hr>
-
 2. **GET /api/inventory/items**
 
     - **Description:** Retrieves a list of all inventory items with optional query parameters for pagination, sorting, filtering, and searching.
@@ -26,15 +24,11 @@
     - page (number, default 1): Page number for pagination.
     - limit (number, default 10): Number of items per page.
 
-<hr>
-
 3. **GET /api/inventory/items/:id**
 
     - **Description:** Retrieves a single inventory item by its ID.
     - **URL Parameters:**
     - id (number, required): ID of the inventory item to retrieve.
-
-<hr>
 
 4. **PUT /api/inventory/items/:id**
 
@@ -44,15 +38,11 @@
         - id (number, required): ID of the inventory item to update.
         - **Request Body:** Fields to be updated (e.g., quantity, price, name, or supplier).
 
-<hr>
-
 5. **DELETE /api/inventory/items/:id**
 
     - **Description:** Deletes an inventory item by its ID.
     - **URL Parameters:**
     - id (number, required): ID of the inventory item to delete.
-
-<hr>
 
 6. **POST /api/inventory/orders**
 
@@ -60,8 +50,6 @@
     - **Request Body:**
     - inventoryItemId (number, required): ID of the inventory item being ordered.
     - quantity (number, required): Quantity of the item being ordered.
-
-<hr>
 
 7. **GET /api/inventory/orders**
 
@@ -76,15 +64,11 @@
     - page (number, default 1): Page number for pagination.
     - limit (number, default 10): Number of items per page.
 
-<hr>
-
 8. **GET /api/inventory/orders/:id**
 
     - **Description:** Retrieves a single order by its ID.
     - **URL Parameters:**
     - id (number, required): ID of the order to retrieve.
-
-<hr>
 
 9. **PUT /api/inventory/orders/:id**
 
@@ -92,8 +76,6 @@
     - **URL Parameters:**
     - id (number, required): ID of the order to update.
     - **Request Body:** Fields to be updated (e.g., quantity).
-
-<hr>
 
 ## Example Requests
 
