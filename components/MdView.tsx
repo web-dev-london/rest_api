@@ -30,10 +30,6 @@ const MdView = async () => {
   return (
     <article
       className="prose mx-auto
-        dark:prose-headings:text-zinc-200
-        dark:prose-pre:bg-zinc-800
-        dark:text-zinc-400
-        dark:prose-strong:text-zinc-300
         text-base md:text-[18px] leading-loose
       "
     >
