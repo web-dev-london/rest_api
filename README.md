@@ -2,7 +2,14 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, install the dependencies:
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/inventory-management-api.git
+cd inventory-management-api
+```
+
+To get started, install the dependencies:
 
 ```bash
 npm install
@@ -17,7 +24,7 @@ bun install
 Set up .env file to configure your database.
 
 ```bash
-cp .env.example .env
+cp  .env
 ```
 
 Connect to your database:
