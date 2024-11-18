@@ -50,13 +50,10 @@ An Inventory Management API can be useful in business applications where you nee
     •	POST /api/inventory/orders: Create a new order.
     •	GET /api/inventory/orders: List all orders.
     •	GET /api/inventory/orders/[id]: Retrieve a specific order by ID.
+    • PUT /api/inventory/orders: Update an order by ID.
+    • DELETE /api/inventory/orders: Delete an order by ID.
 
-• PUT /api/inventory/orders: Update an order by ID.
-• DELETE /api/inventory/orders: Delete an order by ID.
-
-    •	Useful For:
-
-Warehouse management, small businesses, or point-of-sale systems.
+-   **Useful For:** Warehouse management, small businesses, or point-of-sale systems.
 
 # Endpoints Documentation
 
