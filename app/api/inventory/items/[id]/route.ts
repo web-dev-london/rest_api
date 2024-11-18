@@ -4,16 +4,13 @@ import { itemSchema } from "@/schema/validation";
 import { handleSingleRequest } from "@/utils/handleSingleRequest";
 import { handleSingleUpdateRequest } from "@/utils/handleSingleUpdateRequest";
 
-
-
-
 export async function GET(
   request: NextRequest,
-  context: { params: { id: string } }
+  { params }: { params: { id: string } }
 ): Promise<NextResponse> {
   const response = await handleSingleRequest(
     request,
-    context,
+    { params },
     async (id) => {
       const item = await prisma.inventoryItem.findUnique({
         where: {
@@ -26,15 +23,13 @@ export async function GET(
   return response;
 }
 
-
-
 export async function PUT(
   request: NextRequest,
-  context: { params: { id: string } }
+  { params }: { params: { id: string } }
 ): Promise<NextResponse> {
   const response = await handleSingleUpdateRequest(
     request,
-    context,
+    { params },
     itemSchema,
     async (id, data) => {
       const updatedItem = await prisma.inventoryItem.update({
@@ -51,11 +46,13 @@ export async function PUT(
   return response;
 }
 
-
-export async function PATCH(request: NextRequest, context: { params: { id: string } }): Promise<NextResponse> {
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+): Promise<NextResponse> {
   const response = await handleSingleUpdateRequest(
     request,
-    context,
+    { params },
     itemSchema.partial(),
     async (id, data) => {
       const updatedItem = await prisma.inventoryItem.update({
@@ -69,15 +66,15 @@ export async function PATCH(request: NextRequest, context: { params: { id: strin
     }
   );
   return response;
-
 }
 
-
-
-export async function DELETE(request: NextRequest, context: { params: { id: string } }): Promise<NextResponse> {
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+): Promise<NextResponse> {
   const response = await handleSingleRequest(
     request,
-    context,
+    { params },
     async (id) => {
       const item = await prisma.inventoryItem.delete({
         where: {
@@ -89,7 +86,6 @@ export async function DELETE(request: NextRequest, context: { params: { id: stri
   );
   return response;
 }
-
 
 
 
