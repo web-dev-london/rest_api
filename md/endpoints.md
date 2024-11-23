@@ -1,5 +1,7 @@
 # Endpoints Documentation
 
+-       An Inventory Management API can be useful in business applications where you need to keep track of product stock, orders, and supplier information.
+
 ## Endpoints Summary
 
 1. **POST /api/inventory/items**
