@@ -31,6 +31,8 @@ Connect to your database:
 
 ```bash
 npx prisma db push
+# or
+npx prisma migrate dev --name init
 ```
 
 Then, run the development server:
