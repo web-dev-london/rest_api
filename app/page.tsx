@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
 
-      <div className="max-w-3xl mx-auto my-14">
+      <div className="max-w-5xl mx-auto my-14">
         <MdView />
       </div>
     </>

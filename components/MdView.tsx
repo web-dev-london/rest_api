@@ -29,8 +29,8 @@ const MdView = async () => {
 
   return (
     <article
-      className="prose mx-auto
-        text-base md:text-[18px] leading-loose
+      className="prose max-w-5xl mx-auto overflow-hidden whitespace-wrap
+        text-base md:text-[18px] leading-loose px-4
       "
     >
       {renderedContent}
